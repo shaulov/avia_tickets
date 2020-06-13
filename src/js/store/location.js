@@ -55,7 +55,7 @@ class Locations {
 
     serializeAirlines(airlines) {
         return airlines.reduce((acc, airline) => {
-            airline.logo = `http://pics.avs.io/200/200${airline.code}.png`;
+            airline.logo = `http://pics.avs.io/200/200/${airline.code}.png`;
             airline.name = airline.name || airline.name_translations.en;
             acc[airline.code] = airline;
             return acc;
@@ -86,7 +86,6 @@ class Locations {
     async fetchTickets(params) {
         const response = await this.api.prices(params);
         this.lastSearch = this.serializeTickets(response.data);
-        console.log(this.lastSearch);
     }
 
     serializeTickets(tickets) {

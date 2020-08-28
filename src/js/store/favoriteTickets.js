@@ -13,7 +13,6 @@ class FavoriteTickets {
         const price = ticket.querySelector('.ticket-price').textContent;
         const transfers = ticket.querySelector('.ticket-transfers').textContent;
         const flightNumber = ticket.querySelector('.ticket-flight-number').textContent;
-        console.log(origin, destination, date, price, transfers, flightNumber);
         const template = FavoriteTickets.favoriteTicketTemplate(airlineImg, origin, destination, date, price, transfers, flightNumber);
         this.container.insertAdjacentHTML('beforeend', template);
     }

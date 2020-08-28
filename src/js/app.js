@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
     const form = formUI.form;
     const ticketSection = document.querySelector('.tickets-sections');
-    // const favoriteBtns = document.querySelectorAll('.add-favorite');
+    const dropdownContent = document.querySelector('.dropdown-content');
 
     // Events
     form.addEventListener('submit', e => {
@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
         onFormSubmit();
     });
     ticketSection.addEventListener('click', e => {
-        onFavoriteClick(e);
+        onTicketClick(e);
+    });
+    dropdownContent.addEventListener('click', e => {
+        onTicketClick(e);
     });
 
     // Handlers
@@ -46,12 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ticketsUI.renderTickets(locations.lastSearch);
     }
 
-    function onFavoriteClick(event) {
+    function onTicketClick(event) {
         const target = event.target;
-        const btnAddToFavorite = target.closest('.add-favorite');
-        if (btnAddToFavorite) {
-            const ticket = btnAddToFavorite.closest('.ticket-card');
+        const actionBtn = target.closest('.add-favorite') || target.closest('.delete-favorite');
+        if (target.closest('.add-favorite') && actionBtn) {
+            const ticket = actionBtn.closest('.ticket-card');
             favoriteTickets.addToFavorite(ticket);
+        }
+        if (target.closest('.delete-favorite') && actionBtn) {
+            const ticket = actionBtn.closest('.favorite-item');
+            favoriteTickets.deleteFromFavorites(ticket);
         }
     }
 });

@@ -3,6 +3,7 @@ import ticketsUI from '../views/tickets';
 class FavoriteTickets {
     constructor() {
         this.container = document.querySelector('.dropdown-content');
+        this.emptyMsg = document.querySelector('.empty-fav-msg');
     }
 
     addToFavorite(ticket) {
@@ -19,6 +20,14 @@ class FavoriteTickets {
 
     deleteFromFavorites(ticket) {
         ticket.remove();
+    }
+
+    checkEmptiness() {
+        if (!this.container.firstChild) {
+            this.emptyMsg.style.di1splay = 'block !important';
+        } else {
+            this.emptyMsg.style.display = 'none';
+        }
     }
 
     static favoriteTicketTemplate(airlineImg, origin, destination, date, price, transfers, flightNumber) {

@@ -19,8 +19,7 @@ class FavoriteTickets {
     }
 
     deleteFromFavorites(ticket) {
-        this.container.remove(ticket);
-        // реализовать удаление билета
+        ticket.remove();
     }
 
     static favoriteTicketTemplate(airlineImg, origin, destination, date, price, transfers, flightNumber) {

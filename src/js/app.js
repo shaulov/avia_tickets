@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onTicketClick(event) {
+        favoriteTickets.checkEmptiness();
         const target = event.target;
         const actionBtn = target.closest('.add-favorite') || target.closest('.delete-favorite');
         if (target.closest('.add-favorite') && actionBtn) {

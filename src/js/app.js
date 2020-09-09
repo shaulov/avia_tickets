@@ -1,27 +1,26 @@
-import '../css/style.css';
-import './plugins';
-import locations from './store/location';
-import formUI from './views/form';
-import ticketsUI from './views/tickets';
-import currencyUI from './views/currency';
-import favoriteTickets from './store/favoriteTickets';
+import "../css/style.css";
+import "./plugins";
+import locations from "./store/location";
+import formUI from "./views/form";
+import ticketsUI from "./views/tickets";
+import currencyUI from "./views/currency";
+import favoriteTickets from "./store/favoriteTickets";
 
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     initApp();
     const form = formUI.form;
-    const ticketSection = document.querySelector('.tickets-sections');
-    const dropdownContent = document.querySelector('.dropdown-content');
+    const ticketSection = document.querySelector(".tickets-sections");
+    const dropdownContent = document.querySelector(".dropdown-content");
 
     // Events
-    form.addEventListener('submit', e => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
         onFormSubmit();
     });
-    ticketSection.addEventListener('click', e => {
+    ticketSection.addEventListener("click", (e) => {
         onTicketClick(e);
     });
-    dropdownContent.addEventListener('click', e => {
+    dropdownContent.addEventListener("click", (e) => {
         onTicketClick(e);
     });
 
@@ -50,16 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onTicketClick(event) {
-        favoriteTickets.checkEmptiness();
         const target = event.target;
-        const actionBtn = target.closest('.add-favorite') || target.closest('.delete-favorite');
-        if (target.closest('.add-favorite') && actionBtn) {
-            const ticket = actionBtn.closest('.ticket-card');
+        const actionBtn =
+            target.closest(".add-favorite") || target.closest(".delete-favorite");
+        if (target.closest(".add-favorite") && actionBtn) {
+            const ticket = actionBtn.closest(".ticket-card");
             favoriteTickets.addToFavorite(ticket);
         }
-        if (target.closest('.delete-favorite') && actionBtn) {
-            const ticket = actionBtn.closest('.favorite-item');
+        if (target.closest(".delete-favorite") && actionBtn) {
+            const ticket = actionBtn.closest(".favorite-item");
             favoriteTickets.deleteFromFavorites(ticket);
         }
+        favoriteTickets.checkEmptiness();
     }
 });

@@ -1,2 +1,5 @@
 /node_modules
+/.firebase
 package-lock.json
+.firebaserc
+firebase.json
